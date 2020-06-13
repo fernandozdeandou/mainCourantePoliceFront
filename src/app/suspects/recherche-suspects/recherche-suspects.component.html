@@ -1,0 +1,131 @@
+<!--<div class="panel panel-default">
+	<div class="panel-heading">Suspect</div>
+	 <div class="panel-body">
+	   <div *ngIf="suspects">
+		  <table class="table">
+			 <thead>
+				<tr class="th">
+				    <th>N°</th>
+				    <th>Photo</th>
+					<th>Nom et prénom</th>
+					<th>Numéro de la CNI</th>
+					<th>position</th>
+				    <th>détails</th>
+					<th>Modifier</th> --
+				</tr>
+			  </thead>
+			  <tbody>
+				<tr *ngIf="currentSuspect">
+					<td>{{currentSuspect.idSuspect}}</td>
+					 <td><img width="100" width="100" class="img-thumbnail img-circle" src="{{suspectService.host+'/photoFaceSusp/'+currentSuspect.idSuspect}}"/>
+					</td> 
+				    <td>{{currentSuspect.nomPrenom}}</td>
+				    <td>{{currentSuspect.numeroCni}}</td>
+					<td> 
+						 <div>									
+					        <span *ngIf="currentSuspect.position=='GARDER A VUE'">
+						      <img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="currentSuspect.position=='LIBRE'">
+						      <img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="currentSuspect.position=='EN FUITE'">
+						      <img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+					        <span *ngIf="currentSuspect.position=='DEFERER'">
+						      <img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+				        </div> 
+					</td>
+					<td *ngIf="currentSuspect.position!='GARDER A VUE'">
+						<button (click)="onEcrouerSuspect(s)" class="btn btn-primary">écrouer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='DEFERER'">
+						<button (click)="onDefererSuspect(s)" class="btn btn-warning">déférer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='LIBRE'">
+						<button (click)="onRelaxerSuspect(s)" class="btn btn-success">Relaxer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='EN FUITE'">
+						<button (click)="onRechercherSuspect(s)" class="btn btn-danger">Rechercher
+						</button>
+					</td>
+					<td>
+						<button (click)="onGetDetailSuspect(currentSuspect)" class="btn-lint">détails
+						</button>
+					</td>
+					<td><button class="btn-lint">Modifier</button></td>
+				</tr>
+			  </tbody>
+		  </table>
+	   </div>
+	 </div>
+</div> -->
+
+<div class="panel panel-default">
+	<div class="panel-heading">Suspect</div>
+	<div class="panel-body">
+		<table class="table">
+			<thead>
+				<tr class="th">
+				    <th>N°</th>
+				    <th>Photo</th>
+					<th>Nom et prénom</th>
+					<th>Numéro de la CNI</th>
+					<th>position</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngIf="currentSuspect">
+					<td>{{currentSuspect.idSuspect}}</td>
+					<td><img width="100" width="100" class="img-thumbnail img-circle" src="{{suspectService.host+'/photoFaceSusp/'+currentSuspect.idSuspect}}"/>
+					</td> 
+				    <td>{{currentSuspect.nomPrenom}}</td>
+				    <td>{{currentSuspect.numeroCni}}</td>
+				    <td> 
+						 <div>									
+					        <span *ngIf="currentSuspect.position=='GARDER A VUE'">
+						      <img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="currentSuspect.position=='LIBRE'">
+						      <img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="currentSuspect.position=='EN FUITE'">
+						      <img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+					        <span *ngIf="currentSuspect.position=='DEFERER'">
+						      <img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+				        </div> 
+					</td>
+					<td *ngIf="currentSuspect.position!='GARDER A VUE'">
+						<button (click)="onEcrouerSuspect(currentSuspect)" class="btn btn-primary">écrouer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='DEFERER'">
+						<button (click)="onDefererSuspect(currentSuspect)" class="btn btn-warning">déférer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='LIBRE'">
+						<button (click)="onRelaxerSuspect(currentSuspect)" class="btn btn-success">Relaxer
+						</button>
+					</td>
+					<td *ngIf="currentSuspect.position!='EN FUITE'">
+						<button (click)="onRechercherSuspect(currentSuspect)" class="btn btn-danger">Rechercher
+						</button>
+					</td>
+					<td>
+						<button (click)="onGetDetailSuspect(currentSuspect)" class="btn-lint">détails
+						</button>
+					</td>
+					<td><button class="btn-lint">Modifier</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+				

@@ -1,0 +1,98 @@
+
+				
+<div class="container spacer">
+  <div class="panel panel-primary" *ngIf="mode==1">
+    <div class="panel-heading">Nouvel Evenement</div>
+	<div class="panel-body">
+	  <form #f="ngForm" (ngSubmit)="onConfirmer(f.value)">
+	  	<div class="row">
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Qualification : </label>
+			  <input class="form-control" type="text" ngModel name="nomEvenement" required>
+			</div>
+			
+			<div class="form-group">
+			  <label class="control-label">Heure de l'évènement :</label>
+			  <input class="form-control" type="text" ngModel name="heureEvenement" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Saisine : </label>
+			  <input class="form-control" type="text" ngModel name="saisine" required>
+			</div>
+			<div>
+	  		  <label class="control-label">Date de l'évènement : </label>
+			  <input class="form-control" type="date" ngModel name="date" >
+			</div>
+	  	  </div>
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Lieu de évènement: </label>
+			  <input class="form-control" type="text" ngModel name="lieuEvenement" required>
+			</div>	
+	  	  	<div class="form-group">
+			  <label class="control-label">Matricule Enquêteur : </label>
+			  <input class="form-control" type="text" ngModel name="matriEnqueteur">
+			</div>
+			<div class="form-group">
+			  <label class="control-label">N° du requerent : </label>
+			  <input class="form-control" type="number" ngModel name="idRequerent">
+			</div> 
+			<div>
+				<button [disabled]="!f.valid" type="submit" class="btn btn-primary">Confirmer</button>	
+			</div>   
+	  	  </div>
+	  	</div>
+	  </form>
+	</div>
+  </div>
+   <div class="panel panel-primary" *ngIf="mode==2">
+	    <div class="panel-heading">Confirmation</div>
+		<div class="panel-body">
+		    <div class="row">
+	  	        <div class="col-md-6">
+	  	        	<div class="form-group">
+			           <label class="control-label">Qualification : </label>
+			           <label class="form-control">{{formEvent.nomEvenement}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Lieu de évènement: </label>
+			            <label class="form-control">{{formEvent.lieuEvenement}}</label>
+			        </div>
+			        <div>
+	  		            <label class="control-label">Date de l'évènement : </label>
+	  		            <label class="form-control">{{formEvent.date}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Heure de l'évènement :</label>
+			            <label class="form-control">{{formEvent.heureEvenement}}</label>
+			        </div>
+			    </div>
+	  	        <div class="col-md-6">
+	  	        		
+			        <div class="form-group">
+			            <label class="control-label">Saisine : </label>
+			            <label class="form-control">{{formEvent.saisine}}</label>
+			        </div>
+	  	  	        <div class="form-group">
+			            <label class="control-label">Matricule Enquêteur : </label>
+			            <label class="form-control">{{formEvent.matriEnqueteur}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">N° du requerent : </label>
+			            <label class="form-control">{{formEvent.idRequerent}}</label>
+			        </div>
+			        <div>
+			        	<div class="col-md-3">
+				            <button class="btn btn-success" (click)="onSaveEvenement()">Enregistrer</button>
+			            </div>
+			            <div class="col-md-4">
+				             <button class="btn btn-danger" (click)="mode=1">annuler
+				             </button>
+			            </div>
+			        </div>
+		        </div>
+	        </div>	
+	    </div>
+    </div>
+</div>

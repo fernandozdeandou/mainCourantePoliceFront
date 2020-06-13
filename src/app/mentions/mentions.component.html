@@ -1,0 +1,124 @@
+
+<div class="row">
+	<div class="form-group col-md-5">
+	    <form #f1="ngForm" (ngSubmit)="chercherNumero(f1.value.numeroMent)">
+			<div class="form-group">
+				<label >Numero de la mention: </label>
+				<input type="number" ngModel name="numeroMent" required>
+				<button [disabled]="!f1.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+		</form>	
+	</div>
+	<div class="form-group col-md-5">
+		<form #f="ngForm" (ngSubmit)="chercherDate(f.value.dateMention)">
+			<div class="form-group">
+				<label >Date mention: </label>
+				<input type="date" ngModel name="dateMention" required>
+				<button [disabled]="!f.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+	    </form>
+	</div>
+	<div class="col-md-2" *ngIf="mode!=1">
+		<button class="btn-warning" (click)="onRetour()">retour aux mentions</button>	
+	</div>
+</div>
+<div class="panel panel-info" >
+    <div class="panel-heading">{{title}}</div>
+	<div class="panel-body">
+		<div *ngIf="mode==1">
+		  <table class="table" >
+			<thead>
+			    <tr class="active">
+				    <th  >N°</th>
+					<th>Date</th>
+					<th >Heure</th>
+					<th> Titre et commentaire</th>
+					<th>Observation</th>
+				</tr>
+			</thead>
+			<tbody *ngFor="let m of pageMentions?.mention;let ind=index">
+				<tr [ngClass]="{'active':(ind%2)==1}">
+					<td >{{m.numeroMention}}</td>
+				 	<td>{{m.dateMention}}</td>
+					<td s> {{m.heureMention}}</td>
+					<td><em>{{m.titre}}:</em><br> {{m.commentaire}}</td>
+					<td >
+						 <div *ngIf="m.observation==null" >
+						 	<button class="btn-warning" (click)="onObservation(m.numeroMention)">faire observation</button>
+						 </div>
+						 <div *ngIf="m.observation!=null" >
+						 	{{m.observation.message}}
+						 </div>
+					</td> 
+				</tr>
+			</tbody>
+		  </table>	
+		  <div class="container " >
+			<ul class="nav nav-pills">
+				<li [ngClass]="{'active':i==currentPage}" *ngFor="let p of pages; let i=index"><a class="clickable" (click)="gotoPage(i)">{{i+1}}</a>
+				</li>
+			</ul>
+		  </div> 
+		</div>
+
+		<div *ngIf="mode==2">
+			<table class="table" >
+			  <thead>
+			    <tr class="active">
+				    <th >N°</th>
+					<th>Date</th>
+					<th>Heure</th>
+					<th> Titre et commentaire</th>
+					<th>Observation</th>
+				</tr>
+			  </thead>
+			  <tbody *ngIf="currentMention">
+				<tr >
+					<td>{{currentMention.numeroMention}}</td>
+				 	<td>{{currentMention.dateMention}}</td>
+					<td> {{currentMention.heureMention}}</td>
+					<td><em>{{currentMention.titre}}:</em><br> {{currentMention.commentaire}}</td>
+					<td >
+						 <div *ngIf="currentMention.observation==null" >
+						 	<button class="btn-warning" (click)="onObservation(currentMention.numeroMention)">faire observation</button>
+						 </div>
+						 <div *ngIf="currentMention.observation!=null" >
+						 	{{currentMention.observation.message}}
+						 </div>
+					</td> 	
+				</tr>
+			  </tbody>
+			</table>	
+		</div>
+		<div *ngIf="mode==3">
+			<table class="table" >
+			  <thead>
+			    <tr class="active">
+				    <th >N°</th>
+					<th>Date</th>
+					<th>Heure</th>
+					<th> Titre et commentaire</th>
+					<th> Observation</th>
+				</tr>
+			  </thead>
+			  <tbody *ngFor="let m of listeMention; let pid=index">
+				<tr [ngClass]="{'active':(pid%2)==1}">
+					<td>{{m.numeroMention}}</td>
+				 	<td>{{m.dateMention}}</td>
+					<td> {{m.heureMention}}</td>
+					<td><em>{{m.titre}}:</em><br> {{m.commentaire}}</td>
+					<td >
+						 <div *ngIf="m.observation==null" >
+						 	<button class="btn-warning" (click)="onObservation(m.numeroMention)">faire observation</button>
+						 </div>
+						 <div *ngIf="m.observation!=null" >
+						 	{{m.observation.message}}
+						 </div>
+					</td> 
+				</tr>
+			  </tbody>
+		    </table>	
+		</div>
+	</div>
+</div>
+				

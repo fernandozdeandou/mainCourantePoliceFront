@@ -1,0 +1,49 @@
+
+
+
+<div class="panel panel-info">
+	<div class="panel-heading">Informations générales concernant {{personnel.nomPrenom}}</div>
+	<div class="panel-body">
+		<div *ngIf="personnel">
+			<div class="row">
+				<div class="col-md-4">
+					<img width="300"  [src]="personnelService.host+'/imagePersonnel/'+personnel.matricule+'?ts='+getTS()"/>
+					<div >
+				<p><button (click)="onEditPhoto()">
+		               <span class="glyphicon glyphicon-edit"></span>
+				   </button>
+				</p>
+				<p *ngIf="editPhoto==true">
+				   <input type="file" (change)="onSelectedFile($event)"/>
+				   <button class="btn btn-success" (click)="uploadPhotoPersonnel()">UploadPhoto
+				   </button>
+				      {{progress}}
+				</p>	
+			</div>
+				</div>
+				<div class="col-md-4">
+					<ul class="list-group">
+						<li class="list-group-item"> Nom et prénom: {{personnel.nomPrenom}}</li>
+						<li class="list-group-item"> Matricule solde: {{personnel.matricule}}</li>
+						<li class="list-group-item"> Grade: {{personnel.grade}}</li>
+						<li class="list-group-item"> Fonctions occupée: {{personnel.fonction}}</li>
+						<li class="list-group-item"> Date de prise de service: {{personnel.datePriseService}}</li>
+						<li class="list-group-item"> Statut: {{personnel.statut}}</li>
+					</ul>	
+				</div>
+				<div class="col-md-4"> 
+					<ul class="list-group">
+						<li class="list-group-item"> Date de naissace: {{personnel.dateNaissance}}</li>
+						<li class="list-group-item"> Sexe: {{personnel.sexe}}</li>
+						<li class="list-group-item"> Numero de la carte nationale d'identité: {{personnel.numero_cni}}</li>
+						<li class="list-group-item"> Adresse email: {{personnel.email}}</li>
+						<li class="list-group-item"> Numero de téléphone: {{personnel.numeroTelephone}}</li>
+						<li class="list-group-item"> Lieu de résidense: {{personnel.lieuDomicile}}</li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+	</div>	
+</div>
+
+				

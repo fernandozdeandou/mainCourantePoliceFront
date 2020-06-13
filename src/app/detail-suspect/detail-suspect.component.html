@@ -1,0 +1,173 @@
+<div *ngIf="suspect">
+<div class="panel panel-info">
+	   <div class="panel-heading">Informations générales concernant {{suspect.nomPrenom}}</div>
+	   <div class="panel-body">
+		   <div class="row">
+		      <div class="col-md-4">
+		  	      <div>									
+					<span *ngIf="suspect.position=='GARDER A VUE'">
+						<img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='LIBRE'">
+						<img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='EN FUITE'">
+						<img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+					<span *ngIf="suspect.position=='DEFERER'">
+						<img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+				</div>
+			<div> Photo entière</div>
+			<img width="300"  [src]="suspectService.host+'/photoEntiereSusp/'+suspect.idSuspect+'?ts='+getTS()"/>
+			<div >
+				<p><button (click)="onEditPhoto1(suspect)">
+		               <span class="glyphicon glyphicon-edit"></span>
+				   </button>
+				</p>
+				<p *ngIf="editPhoto1==true">
+				   <input type="file" (change)="onSelectedFile($event)"/>
+				   <button class="btn btn-success" (click)="uploadPhotoEntiere()">UploadPhoto
+				   </button>
+				      {{progress}}
+				</p>	
+			</div>
+		  </div>
+		  <div class="col-md-4">
+		  	<div>									
+					<span *ngIf="suspect.position=='GARDER A VUE'">
+						<img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='LIBRE'">
+						<img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='EN FUITE'">
+						<img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+					<span *ngIf="suspect.position=='DEFERER'">
+						<img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+				</div>
+			<p class="panel-heading"> Photo de face</p>
+			<img width="300"  [src]="suspectService.host+'/photoFaceSusp/'+suspect.idSuspect+'?ts='+getTS()"/>
+			<div >
+				<p><button (click)="onEditPhoto2(suspect)">
+		               <span class="glyphicon glyphicon-edit"></span>
+				   </button>
+				</p>
+				<p *ngIf="editPhoto2==true">
+				   <input type="file" (change)="onSelectedFile($event)"/>
+				   <button class="btn btn-success" (click)="uploadPhotoFaceSusp()">UploadPhoto
+				   </button>
+				      {{progress}}
+				</p>	
+			</div>
+		  </div>
+		  <div class="col-md-4">
+		  	<div>									
+					<span *ngIf="suspect.position=='GARDER A VUE'">
+						<img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='LIBRE'">
+						<img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="100" width="100">
+					</span>
+					<span *ngIf="suspect.position=='EN FUITE'">
+						<img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+					<span *ngIf="suspect.position=='DEFERER'">
+						<img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="100" width="100" >
+					</span>
+				</div>
+			<p class="panel-heading"> Photo de profil</p>
+			<img width="300"  [src]="suspectService.host+'/photoProfilSusp/'+suspect.idSuspect+'?ts='+getTS()"/>
+			<div >
+				<p><button (click)="onEditPhoto3(suspect)">
+		               <span class="glyphicon glyphicon-edit"></span>
+				   </button>
+				</p>
+				<p *ngIf="editPhoto3==true">
+				   <input type="file" (change)="onSelectedFile($event)"/>
+				   <button class="btn btn-success" (click)="uploadPhotoProfilSusp()">UploadPhoto
+				   </button>
+				      {{progress}}
+				</p>	
+			</div>
+		  </div>
+	    </div>
+	    
+	    <div class="row">
+	       <div class="panel panel-info">
+		     <div class="panel-heading"> Grande identité</div>
+		     <div class="panel-body">
+			   <div class="col-md-6">
+			     <ul class="list-group">
+				   <li class="list-group-item"> Nom et prénom: {{suspect.nomPrenom}}</li>
+				   <li class="list-group-item"> Alias: {{suspect.alias}}</li>
+				   <li class="list-group-item"> Sexe: {{suspect.sexe}}</li>
+				   <li class="list-group-item"> Né(e) le {{suspect.dateNaissance}} à {{suspect.lieuNaissance}}</li>
+				   <li class="list-group-item"> Titulaire de la CNI N°{{suspect.numeroCni}}</li>
+				   <li class="list-group-item"> Profession :{{suspect.profession}}</li>
+				   <li class="list-group-item"> Position :{{suspect.position}}</li>
+				   <li class="list-group-item"> Antécedent judiciaire :{{suspect.antecedentJudiciaire}}</li>
+				   <li class="list-group-item"> Distinction honorifique:{{suspect.distinctionHonorifique}}</li>
+			     </ul>	
+		        </div>
+		        <div class="col-md-6"> 
+			      <ul class="list-group">
+				    <li class="list-group-item"> Nom du père: {{suspect.nomPere}}</li>
+				    <li class="list-group-item"> Nom de la mère: {{suspect.nomMere}}</li>
+				    <li class="list-group-item"> Lieu de résidence: {{suspect.lieuDomicile}}</li>
+				    <li class="list-group-item"> Nombre d'enfant(s) :{{suspect.nombreEnfant}}</li>
+				    <li class="list-group-item"> Nationalité :{{suspect.nationalite}}</li>
+				    <li class="list-group-item"> Ethnie d'appartenance: {{suspect.ethnie}}</li>
+				    <li class="list-group-item"> Contacts téléphonique: {{suspect.numeroTelephone}}</li>
+			      </ul>
+		        <div>	
+	          </div>
+	        </div>
+        </div>
+    </div> 
+    <div class="panel-info">
+		<div class="panel-heading"> Liste des infractions dont le sieur {{suspect.nomPrenom}} a été suspecté</div>
+		<div class="panel-body" >
+			<table class="table" >
+			  <thead>
+			    <tr class="active">
+				    <th>N°</th>
+				    <th>Infraction</th>
+					<th>Date</th>
+					<th >Lieu</th>
+					<th >Victime</th>
+					<th>Enquêteur</th>
+				</tr>
+			  </thead>
+			  <tbody *ngFor="let e of suspect.evenements;let i=index">
+				<tr [ngClass]="{'active':(i%2)==1}">
+					<td >{{e.idEvenement}}</td>
+				 	<td>{{e.nomEvenement}}</td>
+					<td> {{e.date}}</td>
+					<td>{{e.lieuEvenement}}</td>
+					<td>{{e.requerent.nomPrenom}}</td>
+					<td>{{e.enqueteur.matricule}}</td>
+				</tr>
+			  </tbody>
+		    </table>	
+		    <div >
+				<p><button class="btn-danger" (click)="addEvent()">
+		               Ajouter un évènement
+				   </button>
+				</p>
+				<div *ngIf="adEvent==true">
+				  <form #f="ngForm" (ngSubmit)="onAddEvent(f.value.idEvent)">
+			         <div class="form-group">
+				      <label >saisir le N° de l'évènement : </label>
+				      <input type="number" ngModel name="idEvent" required>
+				      <button [disabled]="!f.valid" type="submit" class="btn btn-warning">ajouter</button>
+			         </div>	
+	              </form>   
+				</div>	
+			</div>
+	    </div>
+    </div>
+   </div>
+</div>

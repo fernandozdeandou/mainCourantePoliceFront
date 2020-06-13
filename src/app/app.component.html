@@ -1,0 +1,75 @@
+ <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">MCIP</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown" class="active">
+        <a class="dropdown-toggle " data-toggle="dropdown" href="#">Mentions main-courante
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu clickable">
+          <li><a (click)="onGetMentions()">Liste des mentions</a></li>
+          <li><a (click)="onAjouterMention()">Ajouter une mention</a></li>
+        </ul>
+      </li>
+      <li class="dropdown" class="active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Suspects
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li ><a (click)="onSuspectsGarderAvue()" class="clickable">Gardés à vue</a></li>
+          <li><a (click)="onSuspectsRechercher()" class="clickable">Suspects recherchés </a></li>
+          <li><a (click)="onSuspectsDeferer()" class="clickable">Suspects déférés </a></li>
+          <li ><a (click)="onListerTousSuspects()" class="clickable"> Tous les suspects</a></li>
+          <li ><a [routerLink]="['/new-suspect']" class="clickable">Ajouter suspect</a></li>
+        </ul>
+      </li>
+      <li class="dropdown active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Personnels
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu clickable">
+          <li><a (click)="onPersonnelConge()">Personnel en congé</a></li>
+          <li><a (click)="onPersonnelMalade()">Personnel malades</a></li>
+          <li><a (click)="onPersonnelOperationnel()">Personnel Opérationnel</a></li>
+          <li><a (click)="onPersonnelPermissionnaire()">PersonnelPermissionnaire</a></li>
+          <li><a (click)="onPersonnelAffecte()">Personnel affecté</a></li>
+          <li><a (click)="onAllPersonnel()">Liste de tout le personnel</a></li>
+          <li><a (click)="onAddPersonnel()">Nouveau personnel</a></li>
+        </ul>
+      </li>
+      <li><a [routerLink]="['/new']">ssssssssssss</a></li>
+      <li class="dropdown" class="active">
+        <a class="dropdown-toggle " data-toggle="dropdown" href="#">Requerent
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu clickable">
+          <li><a (click)="onGetRequerent()">Liste des requerents</a></li>
+          <li><a (click)="onAjouterRequerent()">Ajouter un requerent</a></li>
+        </ul>
+      </li>
+      <li class="dropdown" class="active">
+        <a class="dropdown-toggle " data-toggle="dropdown" href="#">Evenement
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu clickable">
+          <li><a (click)="onGetEvenement()">Liste des évènements</a></li>
+          <li><a (click)="onAjouterEvenement()">Ajouter un évènement</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-right">
+      <li>
+        
+      </li>
+      <li>
+        <a (click)="onLogout()" class="btn">
+          <span class="glyphicon glyphicon-log-out"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <router-outlet>
+      
+    </router-outlet>
+</div>

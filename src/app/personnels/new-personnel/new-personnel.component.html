@@ -1,0 +1,137 @@
+<div class="container spacer">
+  <div class="panel panel-primary" *ngIf="mode==1">
+    <div class="panel-heading">Nouveau Personnel</div>
+	<div class="panel-body">
+	  <form #f="ngForm" (ngSubmit)="onConfirmer(f.value)">
+	  	<div class="row">
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Nom et Prénom: </label>
+			  <input class="form-control" type="text" ngModel name="nomPrenom" required>
+			</div>
+			<div>
+	  		  <label class="control-label">Matricule solde: </label>
+			  <input class="form-control" type="text" ngModel name="matricule">
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Numero de la CNI: </label>
+			  <input class="form-control" type="text" ngModel name="numeroCni" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Date de naissance: </label>
+			  <input class="form-control" type="date" ngModel name="dateNaissance" required>
+			</div>	
+			<div class="form-group">
+			  <label class="control-label">Numeros de téléphone: </label>
+			  <input class="form-control" type="text" ngModel name="numeroTelephone" required>
+			</div>
+	  	  </div>
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+              <label for="grade">Grade :
+              </label>
+                <select class="form-control" name="grade" ngModel required>
+                  <option value="CD">CD</option>
+                  <option value="CPP">CPP</option>
+                  <option value="CP">CP</option>
+                  <option value="OPP">OPP</option>
+                  <option value="OP2">OP2</option>
+                  <option value="OP1">OP1</option>
+                  <option value="IPP">IPP</option>
+                  <option value="IP2">IP2</option>
+                  <option value="IP1">IP1</option>
+                  <option value="GPP">GPP</option>
+                  <option value="GPX2">GPX2</option>
+                  <option value="GPX">GPX</option>
+                </select>
+            </div>	
+			<div>
+	  		  <label class="control-label">Fonction: </label>
+			  <input class="form-control" type="text" ngModel name="fonction">
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Lieu du domicile: </label>
+			  <input class="form-control" type="text" ngModel name="lieuDomicile" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Adresse email : </label>
+			  <input class="form-control" type="text" ngModel name="email">
+			</div>
+	  	  	<div class="form-group">
+              <label for="sexe">Sexe :
+              </label>
+                <select class="form-control" name="sexe" ngModel required>
+                  <option value="MASCULIN">Masculin</option>
+                  <option value="FEMININ">Féminin</option>
+                </select>
+            </div>	 
+	  	  </div>
+	  	</div>
+	  	<button [disabled]="!f.valid" type="submit" class="btn btn-primary">Confirmer</button>	
+	  </form>
+	</div>
+  </div>
+   <div class="panel panel-primary" *ngIf="mode==2">
+	    <div class="panel-heading">Confirmation</div>
+		<div class="panel-body">
+		    <div class="row">
+	  	        <div class="col-md-6">
+	  	            <div class="form-group">
+			            <label class="control-label">Nom et Prénom: </label>
+			            <label class="form-control">{{personnel.nomPrenom}}</label>
+			        </div>
+			        <div>
+	  		            <label class="control-label">Matricule solde: </label>
+	  		            <label class="form-control">{{personnel.matricule}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Numero de la CNI: </label>
+			            <label class="form-control">{{personnel.numeroCni}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Date de naissance: </label>
+			            <label class="form-control">{{personnel.dateNaissance}}</label>
+			        </div>	
+			        <div class="form-group">
+			            <label class="control-label">Numeros de téléphone: </label>
+			            <label class="form-control">{{personnel.numeroTelephone}}</label>
+			        </div>
+			    </div>
+	  	        <div class="col-md-6">
+	  	  	        <div class="form-group">
+                        <label class="control-label">Grade :
+                        </label>
+                        <label class="form-control">{{personnel.grade}}</label>  
+                    </div>	
+			        <div>
+	  		            <label class="control-label">Fonction: </label>
+	  		            <label class="form-control">{{personnel.fonction}}</label> 
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Lieu du domicile: </label>
+			            <label class="form-control">{{personnel.lieuDomicile}}</label>
+			        </div>
+			        <div class="form-group">
+			            <label class="control-label">Adresse email : </label>
+			            <label class="form-control">{{personnel.email}}</label>
+			        </div>
+	  	  	        <div class="form-group">
+                        <label class="control-label">Sexe :
+                        </label>
+                        <label class="form-control">{{personnel.sexe}}</label>
+                    </div>	 
+		        </div>
+	        </div>
+		    <div class="row">
+		        <div class="col-md-2"></div>
+			    <div class="col-md-4">
+				   <button class="btn btn-success" (click)="onSavePersonnel()">Enregistrer</button>
+			    </div>
+			    <div class="col-md-4">
+				    <button class="btn btn-danger" (click)="mode=1">annuler
+				    </button>
+			    </div>		
+		    </div>
+	    </div>
+    </div>
+</div>

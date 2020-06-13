@@ -1,0 +1,89 @@
+<div class="row">
+	<div class="form-group col-md-5">
+	    <form #f1="ngForm" (ngSubmit)="chercherNumeroCni(f1.value.cni)">
+			<div class="form-group">
+				<label >saisir le n° de la cni : </label>
+				<input type="text" ngModel name="cni" required>
+				<button [disabled]="!f1.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+		</form>	
+	</div>
+	<div class="form-group col-md-5">
+		<form #f="ngForm" (ngSubmit)="chercherMotCle(f.value.motCle)">
+			<div class="form-group">
+				<label >saisir le nom du suspect : </label>
+				<input type="text" ngModel name="motCle" required>
+				<button [disabled]="!f.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+	    </form>
+	</div>
+</div>
+<div>
+
+</div>
+
+<div class="panel panel-default" *ngIf="suspects">
+	<div class="panel-heading">{{title}}</div>
+	 <div class="panel-body">
+	   <div *ngIf="suspects">
+		  <table class="table">
+			 <thead>
+				<tr class="th">
+				    <th>N°</th>
+				    <th>Photo</th>
+					<th>Nom et prénom</th>
+					<th>Numéro de la CNI</th>
+					<th>position</th>
+				    <!-- <th>détails</th>
+					<th>Modifier</th> -->
+				</tr>
+			  </thead>
+			  <tbody cl >
+				<tr *ngFor="let s of suspects" class="td">
+					<td>{{s.idSuspect}}</td>
+					<td><img width="100" width="100" class="img-thumbnail img-circle" src="{{suspectService.host+'/photoFaceSusp/'+s.idSuspect}}"/></td>
+				    <td>{{s.nomPrenom}}</td>
+				    <td>{{s.numeroCni}}</td>
+					<td> 
+						 <div>									
+					        <span *ngIf="s.position=='GARDER A VUE'">
+						      <img src="assets/image_mcip/suspectGarderAvue.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="s.position=='LIBRE'">
+						      <img src="assets/image_mcip/suspectLiberer.jpg" class="img-thumbnail img-circle" height="80" width="80">
+					        </span>
+					        <span *ngIf="s.position=='EN FUITE'">
+						      <img src="assets/image_mcip/suspectRecherche.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+					        <span *ngIf="s.position=='DEFERER'">
+						      <img src="assets/image_mcip/suspectDefere.jpg" class="img-thumbnail img-circle" height="80" width="80" >
+					        </span>
+				        </div>
+					</td>
+					<td *ngIf="s.position!='GARDER A VUE'">
+						<button (click)="onEcrouerSuspect(s)" class="btn btn-primary">écrouer
+						</button>
+					</td>
+					<td *ngIf="s.position!='DEFERER'">
+						<button (click)="onDefererSuspect(s)" class="btn btn-warning">déférer
+						</button>
+					</td>
+					<td *ngIf="s.position!='LIBRE'">
+						<button (click)="onRelaxerSuspect(s)" class="btn btn-success">Relaxer
+						</button>
+					</td>
+					<td *ngIf="s.position!='EN FUITE'">
+						<button (click)="onRechercherSuspect(s)" class="btn btn-danger">Rechercher
+						</button>
+					</td>
+					<td>
+						<button (click)="onGetDetailSuspect(s)" class="btn-lint">détails
+						</button>
+					</td>
+					<td><button class="btn-lint">Modifier</button></td>
+				</tr>
+			  </tbody>
+		  </table>
+	   </div>
+	 </div>
+</div>

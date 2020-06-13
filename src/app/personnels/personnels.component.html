@@ -1,0 +1,103 @@
+<div class="row">
+	<div class="form-group col-md-5">
+	    <form #f1="ngForm" (ngSubmit)="chercherParMatricule(f1.value.matricule)">
+			<div class="form-group">
+				<label >saisir le n° matricle : </label>
+				<input type="text" ngModel name="matricule" required>
+				<button [disabled]="!f1.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+		</form>	
+	</div>
+</div>
+<div>
+</div>
+
+<div class="panel panel-default" *ngIf="mode==1">
+	<div class="panel-heading">{{title}}</div>
+	 <div class="panel-body">
+	   <div >
+		  <table class="table">
+			 <thead>
+				<tr class="th">
+					<th>Photo</th>
+				    <th class="active">N° matricule</th>
+				    <th>grade</th>
+					<th class="active">Nom et prénom</th>
+					<th>fonction</th>
+					<th class="active">Statut</th>
+				</tr>
+			  </thead>
+			  <tbody  >
+				<tr *ngFor="let p of personnels?.personnel;let ind=index" class="td">
+					<td><img width="100" width="100" class="img-thumbnail img-circle" src="{{personnelService.host+'/imagePersonnel/'+p.matricule}}"/></td>
+					<td class="active">{{p.matricule}}</td>
+					<td>{{p.grade}}</td>
+				    <td class="active">{{p.nomPrenom}}</td>
+					<td>{{p.fonction}}</td>
+					<td class="active">{{p.statut}}</td>
+					<td *ngIf="p.statut!='EN SERVICE'">
+						<button class="btn-success" (click)="onOperationnel(p)">Rendre operationnel</button>
+					</td>
+				    <td *ngIf="p.statut!='EN CONGE'">
+						<button class="btn-warning" (click)="onConge(p)">Mettre en congé</button>
+					</td> 
+					<td *ngIf="p.statut!='MALADE'">
+						<button class="btn-danger" (click)="onMalade(p)">Rendre malade</button>
+					</td>
+					<td *ngIf="p.statut!='PERMISSIONNAIRE'">
+						<button class="btn-info" (click)="onPermissionnaire(p)" > mettre en permission</button>
+					</td> <!--
+					<td *ngIf="p.statut!='AFFECTE'">
+						<button class="btn-primary" click)="onAffecter(p)">affecter</button>
+					</td> -->
+					<td>
+						<button (click)="onGetDetailPersonnel(p)" class="btn-lint">détails
+						</button>
+					</td>
+				</tr>
+			  </tbody>
+		  </table>
+		  <div class="container " >
+			<ul class="nav nav-pills">
+				<li [ngClass]="{'active':i==currentPage}" *ngFor="let p of pages; let i=index"><a class="clickable" (click)="gotoPage(i)">{{i+1}}</a>
+				</li>
+			</ul>
+		  </div> 
+	   </div>
+	 </div>
+</div>
+<div class="panel panel-default" *ngIf="mode==2">
+	<div class="panel-heading">{{title}}</div>
+	 <div class="panel-body">
+	   <div >
+		  <table class="table">
+			 <thead>
+				<tr class="th">
+					<th>Photo</th>
+				    <th class="active">N° matricule</th>
+				    <th>grade</th>
+					<th class="active">Nom et prénom</th>
+					<th>fonction</th>
+					<th class="active">Statut</th>
+				</tr>
+			  </thead>
+			  <tbody cl >
+				<tr >
+					<td><img width="100" width="100" class="img-thumbnail img-circle" src="{{personnelService.host+'/imagePersonnel/'+currentPersonnel.matricule}}"/></td>
+					<td class="active">{{currentPersonnel.matricule}}</td>
+					<td>{{currentPersonnel.grade}}</td>
+				    <td class="active">{{currentPersonnel.nomPrenom}}</td>
+					<td>{{currentPersonnel.fonction}}</td>
+					<td class="active">{{currentPersonnel.statut}}</td>
+					<td>
+						<button (click)="onGetDetailPersonnel(currentPersonnel)" class="btn-lint">détails
+						</button>
+					</td>
+					<td><button class="btn-lint">Modifier</button></td>
+				</tr>
+			  </tbody>
+		  </table>
+	   </div>
+	 </div>
+</div>
+

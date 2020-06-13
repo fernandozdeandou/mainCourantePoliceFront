@@ -1,0 +1,89 @@
+
+<div class="row">
+	<div class="form-group col-md-5">
+	    <form #f1="ngForm" (ngSubmit)="chercherEvenement(f1.value.idEvent)">
+			<div class="form-group">
+				<label >N° de l'évènement : </label>
+				<input type="number" ngModel name="idEvent" required>
+				<button [disabled]="!f1.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+		</form>	
+	</div>
+	<div class="col-md-2" *ngIf="mode!=1">
+		<button class="btn-success" (click)="onRetour()">retour à la liste des évènements</button>	
+	</div>
+</div>
+<div *ngIf="mode==1">
+	<div class="panel panel-info" >
+    	<div class="panel-heading">liste des évènements</div>
+		<div class="panel-body">
+			<table class="table" >
+		  	  <thead>
+				 <tr class="active">
+			 	   <th  >N°</th>
+			       <th>Qualification</th>
+			       <th >date</th>
+			       <th >Heure</th>
+			       <th>Lieu</th>
+			       <th>Saisine</th>
+			       <th>Enquêteur</th>
+			       <th>Requerent</th>
+			     </tr>
+		     </thead>
+		     <tbody *ngFor="let e of pageEvenement?.content;let ind=index">
+			  <tr [ngClass]="{'active':(ind%2)==1}">
+				<td >{{e.idEvenement}}</td>
+				<td>{{e.nomEvenement}}</td>
+				<td>{{e.date}}</td>
+				<td>{{e.heureEvenement}}</td>
+				<td>{{e.lieuEvenement}}</td>
+				<td>{{e.saisine}}</td>
+				<td>{{e.enqueteur.matricule}}</td>
+				<td>N°{{e.requerent.idRequerent}} :{{e.requerent.nomPrenom}}</td>	
+			  </tr>
+		   </tbody>
+		 </table>	
+		<div class="container " >
+		   <ul class="nav nav-pills">
+			  <li [ngClass]="{'active':i==currentPage}" *ngFor="let p of pages; let i=index"><a class="clickable" (click)="gotoPage(i)">{{i+1}}</a>
+			  </li>
+		   </ul>
+	    </div> 
+    </div>
+  </div>
+</div>
+<div *ngIf="mode==2">
+	<div class="panel panel-info" *ngIf="event" >
+    <div class="panel-heading"> Evenement recherché</div>
+	<div class="panel-body">
+		<table class="table" >
+			<thead>
+			  <tr class="active">
+			 	   <th  >N°</th>
+			       <th>Qualification</th>
+			       <th >date</th>
+			       <th >Heure</th>
+			       <th>Lieu</th>
+			       <th>Saisine</th>
+			       <th>Enquêteur</th>
+			       <th>Requerent</th>
+			     </tr>
+			</thead>
+			<tbody>
+				<tr [ngClass]="{'active':(ind%2)==1}">
+					<td >{{event.idEvenement}}</td>
+					<td>{{event.nomEvenement}}</td>
+					<td>{{event.date}}</td>
+					<td>{{event.heureEvenement}}</td>
+					<td>{{event.lieuEvenement}}</td>
+					<td>{{event.saisine}}</td>
+					<td>{{event.enqueteur.matricule}}</td>
+					<td>N°{{event.requerent.idRequerent}} :{{event.requerent.nomPrenom}}</td>	
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+	
+</div>
+

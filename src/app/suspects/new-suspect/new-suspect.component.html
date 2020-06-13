@@ -1,0 +1,181 @@
+<div class="container spacer">
+  <div class="panel panel-primary" *ngIf="mode==1">
+    <div class="panel-heading">Nouveau suspect</div>
+	<div class="panel-body">
+	  <form #f="ngForm" (ngSubmit)="onConfirmer(f.value)">
+	  	<div class="row">
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Nom et Prénom: </label>
+			  <input class="form-control" type="text" ngModel name="nomPrenom" required>
+			</div>
+			<div>
+	  		  <label class="control-label">Alias: </label>
+			  <input class="form-control" type="text" ngModel name="alias">
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Date de naissance: </label>
+			  <input class="form-control" type="date" ngModel name="dateNaissance" required>
+			</div>	
+			<div class="form-group">
+			  <label class="control-label">Lieu de naissance: </label>
+			  <input class="form-control" type="text" ngModel name="lieuNaissance" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Profession: </label>
+			  <input class="form-control" type="text" ngModel name="profession" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Numero de la CNI: </label>
+			  <input class="form-control" type="text" ngModel name="numeroCni" required>
+			</div>
+			<div class="form-group">
+              <label for="sexe">Sexe :
+              </label>
+                <select class="form-control" name="sexe" ngModel required>
+                  <option value="MASCULIN">Masculin</option>
+                  <option value="FEMININ">Féminin</option>
+                </select>
+            </div>	
+	  	  </div>
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Nom du Père: </label>
+			  <input class="form-control" type="text" ngModel name="nomPere" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nom de la mère: </label>
+			  <input class="form-control" type="text" ngModel name="nomMere" required>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nombre d'enfant en charge : </label>
+			  <input class="form-control" type="number" ngModel name="nombreEnfant" required >
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nationalité: </label>
+			  <input class="form-control" type="text" ngModel name="nationalite" required>
+			</div>
+	  	    <div class="form-group">
+			  <label class="control-label">Ethnie d'ororigine: </label>
+			  <input class="form-control" type="text" ngModel name="ethnie" required>
+			</div>
+			<div class="form-group">
+              <label for="antecedentJudiciaire">Antécedent judiciaire : :
+              </label>
+                <select class="form-control" name="antecedentJudiciaire" ngModel required>
+                  <option value="NEANT">Néant</option>
+                  <option value="Repris de justice">Repris de justice</option>
+                </select>
+            </div>	
+			<div class="form-group">
+              <label for="distinctionHonorifique">
+                Distinction honorifique
+              </label>
+              <select class="form-control" name="distinctionHonorifique" ngModel>
+              	<option value="L’ordre national de la valeur-Grand cordon">L’ordre national de la valeur-Grand cordon </option>
+              	<option value="L’ordre national de la valeur-Grand officier">L’ordre national de la valeur-Grand officier</option>
+              	<option value="L’ordre national de la valeur-Commandeur">L’ordre national de la valeur-Commandeur</option>
+              	<option value="L’ordre national de la valeur-Officier">L’ordre national de la valeur-Officier</option>
+              	<option value="L’ordre national de la valeur-Chevalier">L’ordre national de la valeur-Chevalier</option>
+              	<option value="l’ordre national du mérite camerounais-Grand cordon">l’ordre national du mérite camerounais-Grand cordon</option>
+              	<option value="l’ordre national du mérite camerounais-Commandeur">l’ordre national du mérite camerounais-Commandeur</option>
+              	<option value="l’ordre national du mérite camerounais-Officier">l’ordre national du mérite camerounais-Officier</option>
+              	<option value="l’ordre national du mérite camerounais-Chevalier">l’ordre national du mérite camerounais-Chevalier</option>
+              	<option value="L’ordre du mérite agricole-Commandeur">L’ordre du mérite agricole-Commandeur</option>
+              	<option value="L’ordre du mérite agricole-Officier">L’ordre du mérite agricole-Officier</option>
+              	<option value="aL’ordre du mérite agricole-Chevalier">L’ordre du mérite agricole-Chevalier</option>
+              	<option value="Le mérite sportif de première classe">Le mérite sportif de première classe</option>
+              	<option value="Le mérite sportif de deuxième classe">Le mérite sportif de deuxième classe</option>
+                <option value="Le mérite sportif de troisième classe">Le mérite sportif de troisième classe</option>
+                <option value="La médaille de la vaillance">La médaille de la vaillance</option>
+                <option value="La médaille de la force publique">La médaille de la force publique </option>
+              </select>
+            </div>
+	  	  </div>
+	  	</div>
+	  	<button [disabled]="!f.valid" type="submit" class="btn btn-primary">Confirmer</button>	
+	  </form>
+	</div>
+  </div>
+   <div class="panel panel-primary" *ngIf="mode==2">
+	  <div class="panel-heading">Confirmation</div>
+		<div class="panel-body">
+		  <div class="row">
+	  	    <div class="col-md-6">
+	  	  	  <div class="form-group">
+			     <label class="control-label">Nom et Prénom: </label>
+			     <label class="form-control">{{suspect.nomPrenom}}</label>
+			  </div>
+			  <div>
+	  		     <label class="control-label">Alias: </label>
+	  		     <label class="form-control">{{suspect.alias}}</label>
+			  </div>
+			  <div class="form-group">
+			     <label class="control-label">Date de naissance: </label>
+			     <label class="form-control">{{suspect.dateNaissance}}</label>
+			  </div>	
+   			  <div class="form-group">
+			     <label class="control-label">Lieu de naissance: </label>
+			     <label class="form-control">{{suspect.lieuNaissance}}</label>
+			  </div>
+			  <div class="form-group">
+			     <label class="control-label">Profession: </label>
+			     <label class="form-control">{{suspect.profession}}</label>
+			  </div>
+			  <div class="form-group">
+			     <label class="control-label">Numero de la CNI: </label>
+			     <label class="form-control">{{suspect.numeroCni}}</label>
+			  </div>
+			  <div class="form-group">
+                 <label for="sexe">Sexe :
+                 </label>
+                 <label class="form-control">{{suspect.sexe}}</label>
+              </div>	
+	  	    </div>
+	  	  <div class="col-md-6">
+	  	  	<div class="form-group">
+			  <label class="control-label">Nom du Père: </label>
+			  <label class="form-control">{{suspect.nomPere}}</label>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nom de la mère: </label>
+			  <label class="form-control">{{suspect.nomMere}}</label>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nombre d'enfants en charge: </label>
+			  <label class="form-control">{{suspect.nombreEnfant}}</label>
+			</div>
+			<div class="form-group">
+			  <label class="control-label">Nationalité: </label>
+			  <label class="form-control">{{suspect.nationalite}}</label>
+			</div>
+	  	    <div class="form-group">
+			  <label class="control-label">Ethnie d'ororigine: </label>
+			  <label class="form-control">{{suspect.ethnie}}</label>
+			</div>
+			<div class="form-group">
+              <label class="control-label">Antécedent judiciaire :
+              </label>
+              <label class="form-control">{{suspect.antecedentJudiciaire}}</label>
+            </div>	
+			<div class="form-group">
+              <label class="control-label">
+                Distinction honorifique
+              </label>
+              <label class="form-control">{{suspect.distinctionHonorifique}}</label>	
+			</div>
+		  </div>
+	    </div>
+		<div class="row">
+		    <div class="col-md-2"></div>
+			<div class="col-md-4">
+				<button class="btn btn-success" (click)="onSaveMention()">Enregistrer</button>
+			</div>
+			<div class="col-md-4">
+				<button class="btn btn-danger" (click)="mode=1">annuler
+				</button>
+			</div>		
+		</div>
+	</div>
+  </div>
+ </div>

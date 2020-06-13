@@ -1,0 +1,40 @@
+<div class="container spacer">
+	<div class="panel panel-primary" *ngIf="mode==1">
+		<div class="panel-heading">Nouvelle mention</div>
+		<div class="panel-body">
+			<form #f="ngForm" (ngSubmit)="onConfirmer(f.value)">
+				<div class="form-group">
+					<label class="control-label">Titre: </label>
+					<input class="form-control" type="text" [ngModel]="defaulTitre" name="titre" required>
+				</div>
+				<div class="form-group">
+					<label class="control-label">Commentaire: </label>
+					<input class="form-control" type="text-area" ngModel name="commentaire" required>
+				</div>
+				<button [disabled]="!f.valid" type="submit" class="btn btn-primary">Confirmer</button>	
+	       </form>
+		</div>
+		</div>
+	</div>
+	<div class="panel panel-primary" *ngIf="mode==2">
+		<div class="panel-heading">Confirmation</div>
+		<div class="panel-body">
+			<div>
+				<label class="control-label">Titre :</label>
+				<label class="form-control">{{mention.titre}}</label>
+			</div>
+			<div>
+				<label class="control-label" >Commentaire :</label>
+				<label class="form-control textArea" type="text-area">{{mention.commentaire}}</label>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-4"><button class="btn btn-success" (click)="onSaveMention()">Enregistrer</button>
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-danger" (click)="mode=1">annuler
+					</button>
+				</div>		
+			</div>
+		</div>
+	</div>

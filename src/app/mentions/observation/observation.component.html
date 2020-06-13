@@ -1,0 +1,41 @@
+<div class="container spacer">
+	<div class="panel panel-primary" *ngIf="mode==1">
+		<div class="panel-heading">Observation</div>
+		<div class="panel-body">
+			<form #f="ngForm" (ngSubmit)="onConfirmer(f.value)">
+				<div class="form-group">
+					<label class="control-label">Message d'observation : </label>
+					<input class="form-control" type="text-area" ngModel name="message" required>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<button [disabled]="!f.valid" type="submit" class="btn btn-primary">Confirmer</button>	
+					</div>
+					<div class="col-md-5">
+						<button class="btn btn-warning" (click)="onAnnuler()">Annuler</button>
+					</div>
+				</div>	
+	       </form>
+		</div>
+	</div>
+	<div class="panel panel-primary" *ngIf="mode==2">
+		<div class="panel-heading">Confirmation</div>
+		<div class="panel-body">
+			<div>
+				<div>
+					<label class="control-label">Message d'observation:</label>
+					<label class="form-control textArea" type="text-area">{{observation.message}}</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2"></div>
+				<div class="col-md-3"><button class="btn btn-success" (click)="onFaireObservation()">Enregistrer</button>
+				</div>
+				<div class="col-md-3"><button class="btn btn-danger" (click)="mode=1">corriger le message</button>
+				</div>	
+				<div class="col-md-3"><button class="btn btn-warning" (click)="onAnnuler()">annuler</button>
+				</div>	
+			</div>
+		</div>
+	</div>
+</div>

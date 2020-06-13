@@ -1,0 +1,81 @@
+
+<div class="row">
+	<div class="form-group col-md-5">
+	    <form #f1="ngForm" (ngSubmit)="chercherRequerent(f1.value.numeroReq)">
+			<div class="form-group">
+				<label >N° du requérent: </label>
+				<input type="number" ngModel name="numeroReq" required>
+				<button [disabled]="!f1.valid" type="submit" class="btn btn-warning">Chercher</button>
+			</div>	
+		</form>	
+	</div>
+	<div class="col-md-2" *ngIf="mode!=1">
+		<button class="btn-success" (click)="onRetour()">retour à la liste des requérent</button>	
+	</div>
+</div>
+<div *ngIf="mode==1">
+	<div class="panel panel-info" >
+    	<div class="panel-heading">liste des requérents</div>
+		<div class="panel-body">
+			<table class="table" >
+		  	  <thead>
+				 <tr class="active">
+			 	   <th  >N°</th>
+			       <th>nom et prénom</th>
+			       <th >N° CNI</th>
+			       <th >adresse</th>
+			       <th> Téléphone</th>
+			       <th>email</th>
+			     </tr>
+		     </thead>
+		     <tbody *ngFor="let r of pageRequerent?.content;let ind=index">
+			  <tr [ngClass]="{'active':(ind%2)==1}">
+				<td >{{r.idRequerent}}</td>
+				<td>{{r.nomPrenom}}</td>
+				<td> {{r.numeroCni}}</td>
+				<td> {{r.adresse}}</td>
+				<td> {{r.telephone}}</td>
+				<td> {{r.email}}</td>	
+			  </tr>
+		   </tbody>
+		 </table>	
+		<div class="container " >
+		   <ul class="nav nav-pills">
+			  <li [ngClass]="{'active':i==currentPage}" *ngFor="let p of pages; let i=index"><a class="clickable" (click)="gotoPage(i)">{{i+1}}</a>
+			  </li>
+		   </ul>
+	    </div> 
+    </div>
+  </div>
+</div>
+<div *ngIf="mode==2">
+	<div class="panel panel-info" *ngIf="req" >
+    <div class="panel-heading"> Requérent recherché</div>
+	<div class="panel-body">
+		<table class="table" >
+			<thead>
+			  <tr class="active">
+				<th  >N°</th>
+			    <th>nom et prénom</th>
+			    <th >N° CNI</th>
+			    <th >adresse</th>
+				<th> Téléphone</th>
+				<th>email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr [ngClass]="{'active':(ind%2)==1}">
+					<td >{{req.idRequerent}}</td>
+				 	<td>{{req.nomPrenom}}</td>
+					<td> {{req.numeroCni}}</td>
+					<td> {{req.adresse}}</td>
+					<td> {{req.telephone}}</td>
+					<td> {{req.email}}</td>	
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</div>
+	
+</div>
+
